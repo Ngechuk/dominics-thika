@@ -3,10 +3,12 @@ services:
     name: dominics-thika-backend
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
+    healthCheckPath: /api/health
+    autoDeploy: true
