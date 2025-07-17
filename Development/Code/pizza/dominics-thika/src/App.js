@@ -11,6 +11,8 @@ import Contact from './pages/Contact';
 import Order from './pages/Order';
 import AdminDashboard from './components/AdminDashboard';
 import ComingSoon from './pages/ComingSoon';
+import AdminLogin from './pages/AdminLogin';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -36,7 +38,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/order" element={<Order />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/coming-soon" element={<ComingSoon />} />
           </Routes>
           </MainContent>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { verifyToken } = require('./auth');
 
 // Sample menu data (in a real app, this would come from a database)
 const menuItems = [
@@ -168,5 +169,10 @@ router.get('/categories/list', (req, res) => {
     });
   }
 });
+
+// Example (to be implemented):
+// router.post('/', verifyToken, (req, res) => { /* add menu item */ });
+// router.put('/:id', verifyToken, (req, res) => { /* update menu item */ });
+// router.delete('/:id', verifyToken, (req, res) => { /* delete menu item */ });
 
 module.exports = router; 

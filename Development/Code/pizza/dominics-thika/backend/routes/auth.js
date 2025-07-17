@@ -104,4 +104,7 @@ router.post('/logout', (req, res) => {
   });
 });
 
-module.exports = router; 
+module.exports = router;
+
+// Export verifyToken for use in other routes
+module.exports.verifyToken = verifyToken; 

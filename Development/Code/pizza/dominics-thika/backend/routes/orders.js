@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { verifyToken } = require('./auth');
 
 // In-memory storage for orders (in a real app, this would be a database)
 let orders = [];
@@ -73,7 +74,7 @@ router.post('/', (req, res) => {
 });
 
 // Get all orders (admin endpoint)
-router.get('/', (req, res) => {
+router.get('/', verifyToken, (req, res) => {
   try {
     const { status, limit = 50 } = req.query;
     let filteredOrders = [...orders];
@@ -128,7 +129,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Update order status (admin endpoint)
-router.patch('/:id/status', (req, res) => {
+router.patch('/:id/status', verifyToken, (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;

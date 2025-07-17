@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaPizzaSlice, FaClock, FaCheckCircle, FaTruck, FaTimes, FaEye } from 'react-icons/fa';
 import { ordersAPI, apiUtils } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardContainer = styled.div`
   min-height: 100vh;
@@ -209,6 +210,12 @@ const AdminDashboard = () => {
     preparing: 0,
     delivered: 0
   });
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminToken');
+    navigate('/admin-login');
+  };
 
   useEffect(() => {
     fetchOrders();
@@ -296,6 +303,7 @@ const AdminDashboard = () => {
         <DashboardSubtitle>
           Manage orders and monitor restaurant performance
         </DashboardSubtitle>
+        <button onClick={handleLogout} style={{marginTop: '1rem', padding: '0.5rem 1rem', background: '#e74c3c', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>Logout</button>
       </DashboardHeader>
 
       <StatsGrid>
